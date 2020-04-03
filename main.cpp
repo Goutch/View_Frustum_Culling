@@ -11,8 +11,11 @@ struct Plane {
     float d;
 
     void set(vec4 equation) {
+
         this->normal = vec3(equation.x, equation.y, equation.z);
-        this->d = equation.w;
+        float l=glm::length(normal);
+        normal/=l;
+        this->d = equation.w/l;
     }
 
     float distance(vec3 point) const {
